@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -76,45 +77,49 @@ const About = () => {
             </p>
           </motion.div>
 
-          {/* Проекты */}
-          <motion.div
-            className="flex flex-col gap-4"
-            variants={fadeInUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            custom={4}
-          >
-            <h3 className="text-[20px] sm:text-[24px] font-bold text-inherit">Projects</h3>
-            <div className="flex flex-col gap-4 text-[14px] sm:text-[16px]">
-              <div>
-                <a
-                  href="https://www.behance.net/gallery/228864283/OpenTalk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-inherit hover:underline"
-                >
-                  OpenTalk — Online Therapy Service
-                </a>
-                <p className="text-[#6E6E73]">
-                  A calm and inclusive landing page for an online psychotherapy platform. Built for trust and accessibility.
-                </p>
-              </div>
-              <div>
-                <a
-                  href="https://www.behance.net/gallery/211716965/DIZLAB-online-design-school"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-inherit hover:underline"
-                >
-                  DIZLAB — Design School Platform
-                </a>
-                <p className="text-[#6E6E73]">
-                  A bold and structured website for an online design school. Focused on creative career growth.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+{/* Проекты */}
+<motion.div
+  className="flex flex-col gap-4"
+  variants={fadeInUp}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: false, amount: 0.3 }}
+  custom={4}
+>
+  <h3 className="text-[20px] sm:text-[24px] font-bold text-inherit">Projects</h3>
+  <div className="flex flex-col gap-6 text-[14px] sm:text-[16px]">
+    <div>
+      <a
+        href="https://www.behance.net/gallery/228864283/OpenTalk"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center gap-2 font-bold text-inherit hover:text-[#6E6E73] transition-colors"
+      >
+        OpenTalk — Therapy Service
+        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      </a>
+      <p className="text-[#6E6E73] mt-1">
+        A calm and inclusive landing page for an online psychotherapy platform. Built for trust and accessibility.
+      </p>
+    </div>
+
+    <div>
+      <a
+        href="https://www.behance.net/gallery/211716965/DIZLAB-online-design-school"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group inline-flex items-center gap-2 font-bold text-inherit hover:text-[#6E6E73] transition-colors"
+      >
+        DIZLAB — Design School Platform
+        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      </a>
+      <p className="text-[#6E6E73] mt-1">
+        A bold and structured website for an online design school. Focused on creative career growth.
+      </p>
+    </div>
+  </div>
+</motion.div>
+
         </div>
       </div>
     </section>
