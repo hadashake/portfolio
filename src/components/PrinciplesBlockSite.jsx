@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 const PrinciplesBlock = () => {
@@ -58,12 +60,12 @@ const PrinciplesBlock = () => {
   return (
     <section
       ref={blockRef}
-      className="min-h-screen flex flex-col justify-center items-center gap-10 bg-white dark:bg-[#1C1C1E] transition-colors px-4"
+      className="min-h-screen flex flex-col justify-center items-center gap-8 sm:gap-10 px-6 sm:px-8 bg-white dark:bg-[#1C1C1E] transition-colors"
     >
       {currentTexts.map((text, index) => (
         <p
           key={index}
-          className="text-[48px] md:text-[64px] font-bold leading-tight text-[#1C1C1E] dark:text-white font-sans"
+          className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[64px] font-bold leading-tight text-[#1C1C1E] dark:text-white font-sans text-center"
         >
           {text}
         </p>

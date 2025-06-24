@@ -1,7 +1,5 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import { Sun, Moon } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Moon, Sun, HelpCircle, Phone } from 'lucide-react';
 
 const Header = () => {
   const [theme, setTheme] = useState('light');
@@ -20,46 +18,50 @@ const Header = () => {
   }, [theme]);
 
   const scrollToSection = (id) => {
-    const el = document.querySelector(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    const section = document.querySelector(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <header className="w-full px-[112px] py-[32px] bg-white dark:bg-[#1C1C1E] flex justify-between items-center text-[#1C1C1E] dark:text-white font-sans text-[16px] transition-colors duration-300 z-50">
-      <div className="font-semibold text-[16px]">DCH / design</div>
+    <header className="w-full h-[88px] flex items-center justify-between px-8 py-4 bg-white dark:bg-[#1C1C1E] text-[#1C1C1E] dark:text-white">
 
-      <nav className="flex items-center space-x-6">
-        <button onClick={() => scrollToSection('#about')} className="hover:underline underline-offset-4">
-          about
-        </button>
-        <button onClick={() => scrollToSection('#contacts')} className="hover:underline underline-offset-4">
-          contacts
-        </button>
+      {/* Логотип */}
+      <div className="text-[20px] font-semibold whitespace-nowrap">
+        DCH / design
+      </div>
 
-        {/* Theme toggle */}
-        <div className="flex space-x-2">
-          <button
-            onClick={() => setTheme('light')}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 ${
-              theme === 'light' ? 'bg-black text-white' : 'text-black dark:text-white'
-            }`}
-          >
-            <Sun className="w-5 h-5" />
+      {/* Навигация */}
+      <div className="flex items-center gap-4">
+        {/* Текстовая навигация — показывается только на md и выше */}
+        <div className="hidden md:flex items-center gap-6 text-[16px]">
+          <button onClick={() => scrollToSection('#about')}>about</button>
+          <button onClick={() => scrollToSection('#contacts')}>contacts</button>
+        </div>
+
+        {/* Иконки — только на мобильной версии */}
+        <div className="flex md:hidden items-center gap-4">
+          <button onClick={() => scrollToSection('#about')} aria-label="О разделе">
+            <HelpCircle size={24} />
           </button>
-          <button
-            onClick={() => setTheme('dark')}
-            className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 ${
-              theme === 'dark' ? 'bg-white text-black' : 'text-black dark:text-white'
-            }`}
-          >
-            <Moon className="w-5 h-5" />
+          <button onClick={() => scrollToSection('#contacts')} aria-label="Контакты">
+            <Phone size={24} />
           </button>
         </div>
-      </nav>
+
+        {/* Переключатель темы */}
+        <button
+          onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+          className="w-8 h-8 rounded-full flex items-center justify-center bg-[#1C1C1E] dark:bg-white text-white dark:text-black transition"
+          aria-label="Сменить тему"
+        >
+          {theme === 'light' ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
+      </div>
     </header>
   );
 };
 
 export default Header;
+  

@@ -25,25 +25,17 @@ export default function Hero() {
   return (
     <div className="h-[300vh] bg-white dark:bg-[#1C1C1E] transition-colors duration-500">
       <div className="sticky top-0 h-screen flex items-center justify-center">
-        <div className="text-center px-[24px]">
+        <div className="text-center px-6 sm:px-[24px]">
           <div className="overflow-hidden">
             <h1
-              className={`text-[32px] md:text-[48px] lg:text-[64px] font-bold leading-tight inline-block transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] text-[#1C1C1E] dark:text-white ${
+              className={`text-[32px] md:text-[48px] lg:text-[64px] font-bold leading-tight transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] text-[#1C1C1E] dark:text-white ${
                 step >= 1
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-10"
               }`}
             >
-              Hi,&nbsp;
-              <span
-                className={`inline-block transition-all duration-700 delay-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
-                  step >= 1
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-10"
-                }`}
-              >
-                I’m Daria. I'm UI/UX designer
-              </span>
+              Hi, I’m Daria. <br />
+              I’m UI/UX designer.
             </h1>
           </div>
 
@@ -52,7 +44,7 @@ export default function Hero() {
               step >= 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
             }`}
           >
-            I am UI/UX Designer. I design simple and structured digital interfaces.
+            I design simple and structured digital interfaces.
           </p>
         </div>
       </div>
