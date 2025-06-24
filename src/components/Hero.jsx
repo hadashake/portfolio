@@ -1,47 +1,61 @@
-import MainImage from '../images/main2.jpg';
+'use client';
 
-const Hero = () => {
+import { useEffect, useState } from "react";
+
+export default function Hero() {
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+
+      if (scrollTop < 100) {
+        setStep(0);
+      } else if (scrollTop >= 100 && scrollTop < 300) {
+        setStep(1);
+      } else {
+        setStep(2);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section
-      className="relative h-screen w-full text-white font-Manrope bg-cover bg-center"
-      style={{ backgroundImage: `url(${MainImage})` }}
-    >
-      {/* затемнение фона */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
+    <div className="h-[300vh] bg-white dark:bg-[#1C1C1E] transition-colors duration-500">
+      <div className="sticky top-0 h-screen flex items-center justify-center">
+        <div className="text-center px-[24px]">
+          <div className="overflow-hidden">
+            <h1
+              className={`text-[32px] md:text-[48px] lg:text-[64px] font-bold leading-tight inline-block transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] text-[#1C1C1E] dark:text-white ${
+                step >= 1
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              Hi,&nbsp;
+              <span
+                className={`inline-block transition-all duration-700 delay-200 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+                  step >= 1
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+              >
+                I’m Daria. I'm UI/UX designer
+              </span>
+            </h1>
+          </div>
 
-      {/* Контент поверх */}
-      <div className="relative z-10 flex flex-col justify-center h-full px-4 sm:px-10">
-        {/* Верхняя надпись “Новый / Стиль” */}
-        <div className="flex flex-col sm:flex-row sm:justify-between items-center text-5xl sm:text-6xl font-extrabold uppercase w-full gap-2 text-center sm:text-left">
-          <span>Новый</span>
-          <span className="sm:translate-y-0 translate-y-8">Стиль</span>
-        </div>
-
-        {/* Описание по центру */}
-        <div className="flex justify-center mt-6">
-          <p className="text-base sm:text-2xl font-medium max-w-md text-center sm:-translate-y-20 mt-4">
-            Смелый дизайн. Ограниченная коллекция. <br className="hidden sm:block" />
-            Создано для современных людей.
+          <p
+            className={`mt-4 text-[16px] text-[#6E6E73] dark:text-[#A1A1AA] transition-all duration-700 delay-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+              step >= 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
+          >
+            I am UI/UX Designer. I design simple and structured digital interfaces.
           </p>
         </div>
-
-        {/* Кнопка и стрелочка внизу */}
-        <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center">
-          <a
-            href="#next"
-            className="mb-3 px-6 py-2 sm:px-6 sm:py-3 border border-white rounded-full text-xs sm:text-sm uppercase tracking-wider hover:bg-white hover:text-black transition"
-          >
-            Подробнее
-          </a>
-          <img
-            src="/image/Vector.svg"
-            alt="Стрелка вниз"
-            className="w-5 h-5 sm:w-6 sm:h-6 animate-bounce"
-          />
-        </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default Hero;
+}

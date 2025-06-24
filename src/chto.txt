@@ -1,0 +1,83 @@
+'use client';
+
+import { motion, useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const words = ['structure.', 'research.', 'design.', 'refine.'];
+
+const PrinciplesBlock = () => {
+  return (
+    <section className="h-screen snap-y snap-mandatory overflow-y-scroll bg-white dark:bg-[#1C1C1E] transition-colors duration-500">
+      {words.map((word, index) => (
+        <SnapBlock key={index} word={word} />
+      ))}
+    </section>
+  );
+};
+
+const SnapBlock = ({ word }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ threshold: 0.5 });
+
+  const letters = word.split('');
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden');
+    }
+  }, [inView, controls]);
+
+  const container = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.06,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const letter = {
+    hidden: { opacity: 0, y: 30, scale: 0.95, rotateX: -90 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  };
+
+  return (
+    <div
+      ref={ref}
+      className="h-screen flex items-center justify-center snap-start bg-white dark:bg-[#1C1C1E] transition-colors duration-500"
+    >
+      <motion.div
+        className="flex text-[64px] font-bold leading-none text-[#1C1C1E] dark:text-white"
+        variants={container}
+        initial="hidden"
+        animate={controls}
+      >
+        {letters.map((char, i) => (
+          <motion.span
+            key={i}
+            variants={letter}
+            className="inline-block"
+            style={{ perspective: 1000 }}
+          >
+            {char}
+          </motion.span>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+export default PrinciplesBlock;
