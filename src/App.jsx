@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Header from "./components/header.jsx";
-import Hero from "./components/hero.jsx";
-import About from "./components/about";
-import PrinciplesBlock from "./components/principlesBlock.jsx";
-import ContactBlock from "./components/contactblock.jsx";
+import Header from './components/Header.jsx';
+import Hero from "./components/Hero.jsx";
+import About from "./components/About.jsx";
+import PrinciplesBlock from "./components/PrinciplesBlock.jsx";
+import ContactBlock from "./components/Contactblock.jsx";
 import './index.css';
 
 function App() {
@@ -11,11 +11,11 @@ function App() {
 
   return (
     <>
-      <Header lang={lang} setLang={setLang} />
-      <Hero lang={lang} />
-      <About lang={lang} />
-      <PrinciplesBlock lang={lang} />
-      <ContactBlock lang={lang} />
+      <Header />
+      <Hero />
+      <About />
+      <PrinciplesBlock />
+      <ContactBlock />
     </>
   );
 }
